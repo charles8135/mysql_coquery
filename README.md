@@ -1,6 +1,12 @@
 # mysql_coquery
-mysql query concurrency tool with mysqli
 
+##功能
 1. 采用myqli_poll实现多query并发
 2. 业务上多sql并发，降低处理时间
 3. 稳定性上多sql并发，提升系统稳定性
+
+##逻辑
+1. 用户提交若干个sql和每个sql对应的db配置信息
+2. 工具将对所有sql进行并发请求，并且针对并发度为每个sql并发请求
+3. 针对具体一个sql，如果已经正常返回结果，则其他请求将会关闭
+4. 针对不同的sql，会等全部sql都返回时，全部再返回
